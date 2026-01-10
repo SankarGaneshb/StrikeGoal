@@ -2,9 +2,9 @@ import streamlit as st
 import json
 import pandas as pd
 from datetime import datetime
-import pytz
-from utils.calendar_sync import sync_to_google_calendar
-from utils.study_planner import generate_study_plan
+#import pytz
+#from utils.calendar_sync import sync_to_google_calendar
+f#rom utils.study_planner import generate_study_plan
 
 # Page configuration
 st.set_page_config(
@@ -142,4 +142,3 @@ elif page == "⚙️ Settings":
             st.success("Settings saved successfully!")
 
 st.divider()
-st.footer("Made with ❤️ for Indian students | StrikeGoal v1.0")
