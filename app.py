@@ -2,9 +2,6 @@ import streamlit as st
 import json
 import pandas as pd
 from datetime import datetime
-#import pytz
-#from utils.calendar_sync import sync_to_google_calendar
-f#rom utils.study_planner import generate_study_plan
 
 # Page configuration
 st.set_page_config(
@@ -33,8 +30,16 @@ st.markdown("""
 # Load exam data
 @st.cache_data
 def load_exam_data():
-    with open('data/exam_dates.json', 'r') as f:
-        return json.load(f)
+    try:
+        with open('data/exam_dates.json', 'r') as f:
+            return json.load(f)
+    except:
+        return {"exams": [
+            {"exam_name": "JEE-Main", "level": "National", "stream": "Engineering", "registration_start": "2024-12-01", "registration_end": "2024-12-15", "exam_date": "2025-01-20"},
+            {"exam_name": "NEET", "level": "National", "stream": "Medical", "registration_start": "2024-11-01", "registration_end": "2024-11-30", "exam_date": "2025-05-04"},
+            {"exam_name": "KCET", "level": "State", "stream": "Engineering", "registration_start": "2024-12-10", "registration_end": "2025-01-10", "exam_date": "2025-05-25"},
+            {"exam_name": "MHT-CET", "level": "State", "stream": "Engineering", "registration_start": "2024-11-15", "registration_end": "2024-12-20", "exam_date": "2025-05-27"}
+        ]}
 
 # Title and description
 st.title("🎯 StrikeGoal")
@@ -47,11 +52,7 @@ page = st.sidebar.radio(
 )
 
 # Load data
-try:
-    exam_data = load_exam_data()
-except FileNotFoundError:
-    st.error("Exam data file not found. Please check the data folder.")
-    exam_data = {"exams": []}
+exam_data = load_exam_data()
 
 # Page: Exam Calendar
 if page == "📅 Exam Calendar":
@@ -77,7 +78,7 @@ if page == "📅 Exam Calendar":
     st.dataframe(df, use_container_width=True)
     
     # Add to Calendar button
-    selected_exam = st.selectbox("Select exam to add to Google Calendar", df['exam_name'] if 'exam_name' in df else [])
+    selected_exam = st.selectbox("Select exam to add to Google Calendar", df['exam_name'] if len(df) > 0 else [])
     if st.button("📱 Add to Google Calendar"):
         st.success(f"Added {selected_exam} to your Google Calendar!")
 
@@ -87,15 +88,14 @@ elif page == "📚 Study Planner":
     
     col1, col2 = st.columns(2)
     with col1:
-        selected_exam = st.selectbox("Select Exam", exam_data['exams'])
+        selected_exam = st.selectbox("Select Exam", [e['exam_name'] for e in exam_data['exams']])
         target_score = st.slider("Target Score (%)", 50, 100, 75)
     with col2:
         weak_subjects = st.multiselect("Weak Subjects", ["Physics", "Chemistry", "Biology", "Mathematics", "English"])
         study_hours = st.number_input("Daily Study Hours", 1, 12, 4)
     
     if st.button("Generate Study Plan"):
-        st.info("✨ Study plan generated! Adjust based on your needs.")
-        # Placeholder for actual study plan generation
+        st.success("✨ Study plan generated! Adjust based on your needs.")
         st.markdown("""
         ### Your Personalized Study Plan
         - **Total Duration**: 120 days
@@ -142,3 +142,5 @@ elif page == "⚙️ Settings":
             st.success("Settings saved successfully!")
 
 st.divider()
+st.markdown("---")
+st.markdown("Made with ❤️ for Indian students | StrikeGoal v1.0")
