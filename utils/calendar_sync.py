@@ -1,79 +1,169 @@
-from google.oauth2.service_account import Credentials
+import os.path
+import pickle
 from google.auth.transport.requests import Request
-from datetime import datetime, timedelta
-import json
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+import datetime
+
+# Scopes
+# If modifying these scopes, delete the file token.pickle.
+SCOPES = [
+    'https://www.googleapis.com/auth/calendar.events',
+    'https://www.googleapis.com/auth/tasks'
+]
+
+def get_credentials():
+    """
+    Get valid user credentials from storage or run authentication flow.
+    """
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+            
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            # We need credentials.json from the user
+            if not os.path.exists('credentials.json'):
+                return None
+            
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+            
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+            
+    return creds
 
 def sync_to_google_calendar(exam_data, calendar_id=None):
     """
-    Sync exam dates to Google Calendar.
-    
-    Args:
-        exam_data: Dictionary containing exam information
-        calendar_id: Google Calendar ID (uses primary if not specified)
-    
-    Returns:
-        bool: True if sync successful
+    Placeholder/Legacy: Sync exam dates to Calendar. 
+    Prefer using ICS export in app.py for simplicity.
     """
+    # ... logic similar to tasks if needed ...
+    pass
+
+def sync_to_google_tasks(plan_df, task_list_name="StrikeGoal Plan"):
+    """
+    Sync items from plan_df to a Google Task list.
+    """
+    creds = get_credentials()
+    if not creds:
+        return {"status": "error", "message": "credentials.json not found. Please set up Google API."}
+
     try:
-        # Placeholder for Google Calendar API integration
-        # In production, this would authenticate and add events
-        print(f"Syncing {len(exam_data)} exams to Google Calendar")
-        return True
+        service = build('tasks', 'v1', credentials=creds)
+
+        # 1. Create or Find Task List
+        tasklists = service.tasklists().list().execute()
+        target_list_id = None
+        
+        for tl in tasklists.get('items', []):
+            if tl['title'] == task_list_name:
+                target_list_id = tl['id']
+                break
+        
+        if not target_list_id:
+            new_list = service.tasklists().insert(body={'title': task_list_name}).execute()
+            target_list_id = new_list['id']
+
+        # 2. Add Tasks
+        count = 0
+        total = len(plan_df)
+        
+        for _, row in plan_df.iterrows():
+            date_str = row['Date'] # String 'YYYY-MM-DD'
+            subject = row.get('Subject', '')
+            chapter = row.get('Chapter', '')
+            
+            # ISO 8601 timestamp for due date (RFC 3339)
+            # Google Tasks due date is T00:00:00.000Z
+            due_date = f"{date_str}T00:00:00.000Z"
+            
+            task_body = {
+                'title': f"{subject}: {chapter}",
+                'notes': f"Focus: {row.get('Focus', 'Study')}",
+                'due': due_date
+            }
+            
+            service.tasks().insert(tasklist=target_list_id, body=task_body).execute()
+            count += 1
+            
+        return {"status": "success", "message": f"Successfully added {count} tasks to '{task_list_name}'"}
+
     except Exception as e:
-        print(f"Error syncing to calendar: {str(e)}")
-        return False
+        return {"status": "error", "message": str(e)}
 
-def create_event(exam_name, exam_date, description=""):
+def get_google_tasks_streak(prefix="SG:"):
     """
-    Create a calendar event object.
-    
-    Args:
-        exam_name: Name of the exam
-        exam_date: Date of the exam (YYYY-MM-DD format)
-        description: Event description
-    
-    Returns:
-        dict: Event object for Google Calendar
+    Calculate the current study streak (consecutive days with completed tasks).
+    Look for task lists starting with 'prefix' (default 'SG:' for StrikeGoal).
     """
-    event = {
-        'summary': exam_name,
-        'description': description,
-        'start': {
-            'date': exam_date,
-        },
-        'end': {
-            'date': exam_date,
-        },
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-                {'method': 'notification', 'minutes': 24 * 60},  # 1 day before
-                {'method': 'popup', 'minutes': 60},  # 1 hour before
-            ],
-        },
-    }
-    return event
-
-def send_notifications(exam_data, days_before=1):
-    """
-    Send notifications for upcoming exams.
-    
-    Args:
-        exam_data: List of exam dictionaries
-        days_before: Send notifications this many days before
-    
-    Returns:
-        list: Exams with upcoming notifications
-    """
-    today = datetime.now().date()
-    upcoming = []
-    
-    for exam in exam_data:
-        try:
-            exam_date = datetime.strptime(exam.get('exam_date', ''), '%Y-%m-%d').date()
-            if exam_date - today <= timedelta(days=days_before) and exam_date >= today:
-                upcoming.append(exam)
-        except ValueError:
-            continue
-    
-    return upcoming
+    creds = get_credentials()
+    if not creds:
+        return 0 # No credentials, no streak
+        
+    try:
+        service = build('tasks', 'v1', credentials=creds)
+        
+        # 1. Find relevant task lists
+        tasklists = service.tasklists().list().execute()
+        relevant_list_ids = []
+        for tl in tasklists.get('items', []):
+            if tl['title'].startswith(prefix):
+                relevant_list_ids.append(tl['id'])
+                
+        if not relevant_list_ids:
+            return 0
+            
+        # 2. Fetch completed tasks from all lists
+        completed_dates = set()
+        for list_id in relevant_list_ids:
+            # We want completed tasks. showCompleted=True, showHidden=True
+            results = service.tasks().list(
+                tasklist=list_id, 
+                showCompleted=True, 
+                showHidden=True,
+                maxResults=100
+            ).execute()
+            
+            tasks = results.get('items', [])
+            for task in tasks:
+                if task['status'] == 'completed' and 'completed' in task:
+                    # Parse timestamp (YYYY-MM-DD...)
+                    comp_date_str = task['completed'][:10]
+                    completed_dates.add(comp_date_str)
+                    
+        # 3. Calculate Streak
+        if not completed_dates:
+            return 0
+            
+        sorted_dates = sorted([datetime.datetime.strptime(d, "%Y-%m-%d").date() for d in completed_dates], reverse=True)
+        today = datetime.date.today()
+        yesterday = today - datetime.timedelta(days=1)
+        
+        if sorted_dates[0] < yesterday:
+            return 0
+            
+        streak = 0
+        current_check = today
+        if sorted_dates[0] != today:
+             current_check = yesterday
+             
+        date_set = set(sorted_dates)
+        while current_check in date_set:
+            streak += 1
+            current_check -= datetime.timedelta(days=1)
+            
+        return streak
+        
+    except Exception as e:
+        print(f"Error calculating streak: {e}")
+        return 0

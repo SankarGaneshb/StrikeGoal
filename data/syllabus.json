@@ -1,0 +1,188 @@
+{
+    "JEE (Main)": {
+        "Physics": [
+            {
+                "name": "Rotational Motion",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Thermodynamics",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Electrostatics",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Kinematics",
+                "weightage": "Medium",
+                "time_required": 1
+            },
+            {
+                "name": "Modern Physics",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Units and Measurements",
+                "weightage": "Low",
+                "time_required": 1
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Chemical Bonding",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Coordination Compounds",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Equilibrium",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Organic Chemistry Basics",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Atomic Structure",
+                "weightage": "Low",
+                "time_required": 1
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus (Integration)",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Vectors and 3D",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Matrices and Determinants",
+                "weightage": "Medium",
+                "time_required": 1
+            },
+            {
+                "name": "Probability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Trigonometry",
+                "weightage": "Low",
+                "time_required": 2
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "NEET (UG)": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electrodynamics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Modern Physics",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Optics",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "SHM & Waves",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Physical Chemistry",
+                "weightage": "Medium",
+                "time_required": 3
+            },
+            {
+                "name": "Environmental Chemistry",
+                "weightage": "Low",
+                "time_required": 1
+            }
+        ],
+        "Biology": [
+            {
+                "name": "Human Physiology",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Genetics & Evolution",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Plant Physiology",
+                "weightage": "Medium",
+                "time_required": 3
+            },
+            {
+                "name": "Ecology",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Cell Biology",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Biotechnology",
+                "weightage": "High",
+                "time_required": 2
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+cookie:
+  expiry_days: 30
+  key: random_signature_key
+  name: strikegoal_auth
+credentials:
+  usernames:
+    student:
+      email: student@strikegoal.app
+      name: Student User
+      password: $2b$12$6sS1fbNb8WoQ7nFNqnrn0eaSVDXFNYQVA93gyQK641/ARWkG1OOkm
+pre-authorized:
+  emails:
+  - admin@strikegoal.app
