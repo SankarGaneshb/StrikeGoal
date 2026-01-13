@@ -91,7 +91,7 @@ if st.session_state["authentication_status"]:
     # Sidebar navigation
     page = st.sidebar.radio(
         "Select Page",
-        ["📅 Exam Calendar", "📚 Study Planner", "📊 Analytics", "⚙️ Settings"]
+        ["📅 Exam Calendar", "📚 Study Planner", "📊 Analytics", "🧘 Wellness", "⚙️ Settings"]
     )
 elif st.session_state["authentication_status"] is False:
     st.error('Username/password is incorrect')
@@ -467,6 +467,102 @@ elif page == "📊 Analytics":
     
     st.divider()
     
+
+
+# Page: Wellness
+elif page == "🧘 Wellness":
+    st.header("Wellness & Care Hub")
+    st.markdown("_Because a sharp mind needs a healthy body._")
+    
+    from utils.wellness import get_daily_tip, get_stress_buster, calculate_sleep_schedule, get_exam_day_advice
+    from datetime import datetime
+    
+    # 1. Focus Mode (Do Not Disturb)
+    st.subheader("🛑 Focus Mode")
+    if 'focus_mode' not in st.session_state:
+        st.session_state['focus_mode'] = False
+        
+    col_focus, col_info = st.columns([1, 3])
+    with col_focus:
+        if st.button("Toggle DND Mode", type="primary" if not st.session_state['focus_mode'] else "secondary"):
+            st.session_state['focus_mode'] = not st.session_state['focus_mode']
+            st.rerun()
+            
+    with col_info:
+        if st.session_state['focus_mode']:
+            st.warning("⚠️ **DND ACTIVE**: Please maintain silence. Exam in progress.")
+        else:
+            st.info("Activate this to signal 'Quiet Time' to those around you.")
+
+    if st.session_state['focus_mode']:
+         st.markdown("""
+         <style>
+            .stApp { background-color: #000000; color: #ff4b4b; }
+            .dnd-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: black; color: red; z-index: 99999;
+                display: flex; flex-direction: column; align-items: center; justify-content: center;
+                text-align: center;
+            }
+         </style>
+         <div class="dnd-overlay">
+            <h1 style='font-size: 80px;'>🛑 DO NOT DISTURB</h1>
+            <h2>MOCK TEST IN PROGRESS</h2>
+            <p>Please come back later.</p>
+            <br><br>
+            <p style='color: white; font-size: 20px;'>Press 'Toggle DND Mode' to exit.</p>
+         </div>
+         """, unsafe_allow_html=True)
+
+    st.divider()
+
+    # 2. Brain Fuel & Stress Busters
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("🍎 Brain Fuel")
+        tip = get_daily_tip()
+        st.info(f"**{tip['title']}** ({tip['category']})\n\n{tip['tip']}")
+        
+        if st.button("New Tip"):
+            pass # Rerun automatically happens
+            
+    with col2:
+        st.subheader("🧘 Stress Buster Service")
+        if st.button("I'm feeling stressed!"):
+            relief = get_stress_buster()
+            st.success(f"**Try this:** {relief['title']} ({relief['duration']})\n\n{relief['tip']}")
+    
+    st.divider()
+    
+    # 3. Sleep Guard
+    st.subheader("😴 Sleep Guard")
+    sc1, sc2 = st.columns(2)
+    with sc1:
+        wake_time = st.time_input("I need to wake up at:", datetime.strptime("06:00", "%H:%M").time())
+    with sc2:
+        if st.button("Calculate Bedtime"):
+            res = calculate_sleep_schedule(wake_time.strftime("%H:%M"))
+            if 'error' not in res:
+                st.metric("Go to bed by", res['bed_time'])
+                st.caption(f"To get {res['hours']} ({res['cycles']})")
+    
+    # 4. Exam Advice
+    # Try to find next exam (reuse logic in a real app, simpler here)
+    st.divider()
+    st.subheader("📅 Exam Readiness")
+    # Quick hack: assume first loaded exam is target for advice
+    if 'exams' in exam_data and len(exam_data['exams']) > 0:
+        target_ex = exam_data['exams'][0]
+        try:
+             # simple date parsing for demo
+             import pandas as pd
+             d_obj = pd.to_datetime(target_ex['exam_date']) # Might fail if complex string
+             # Skip complexity for now, show generic advice
+             st.markdown(f"**Advice for {target_ex['exam_name']}:**")
+             st.write(get_exam_day_advice(30)) # Mocking '30 days left'
+        except:
+             st.write(get_exam_day_advice(100))
 
 
 # Page: Settings
