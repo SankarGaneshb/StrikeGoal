@@ -16,10 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Sidebar Info for User Convenience (Remove in actual production)
-with st.sidebar:
-    with st.expander("🔐 Default Login Info", expanded=False):
-        st.info("**Username:** student\n\n**Password:** strikegoal2026")
+
 
 # Custom CSS
 st.markdown("""
