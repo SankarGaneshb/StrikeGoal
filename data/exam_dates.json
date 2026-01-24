@@ -241,7 +241,33 @@
             "exam_date": "Not in source",
             "registration_start": null,
             "registration_end": null,
-            "source": "31"
+        },
+        {
+            "exam_name": "UPSC CSE (Prelims)",
+            "level": "National",
+            "stream": "Civil Services",
+            "exam_date": "26 May 2026 (Tentative)",
+            "registration_start": "February 2026",
+            "registration_end": "March 2026",
+            "source": "Predicted"
+        },
+        {
+            "exam_name": "CAT",
+            "level": "National",
+            "stream": "Management",
+            "exam_date": "29 November 2026 (Tentative)",
+            "registration_start": "August 2026",
+            "registration_end": "September 2026",
+            "source": "Predicted"
+        },
+        {
+            "exam_name": "GATE",
+            "level": "National",
+            "stream": "Engineering",
+            "exam_date": "February 2026",
+            "registration_start": "September 2025",
+            "registration_end": "October 2025",
+            "source": "Predicted"
         }
     ]
 }

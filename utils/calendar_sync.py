@@ -42,13 +42,55 @@ def get_credentials():
             
     return creds
 
-def sync_to_google_calendar(exam_data, calendar_id=None):
+def sync_to_google_calendar(plan_df, calendar_id='primary'):
     """
-    Placeholder/Legacy: Sync exam dates to Calendar. 
-    Prefer using ICS export in app.py for simplicity.
+    Sync items from plan_df to Google Calendar as All-Day Events.
     """
-    # ... logic similar to tasks if needed ...
-    pass
+    creds = get_credentials()
+    if not creds:
+        return {"status": "error", "message": "credentials.json not found or auth failed."}
+
+    try:
+        service = build('calendar', 'v3', credentials=creds)
+        
+        count = 0
+        for _, row in plan_df.iterrows():
+            date_str = row['Date'] # YYYY-MM-DD
+            subject = row.get('Subject', 'Study')
+            chapter = row.get('Chapter', 'Topic')
+            weightage = row.get('Weightage', 'Low')
+            
+            # Color ID: 11 (Red) for High, 5 (Yellow) for Medium, 9 (Blue) for Low
+            # See https://lukeboyle.com/blog-posts/2016/04/google-calendar-api-color-id
+            color_id = '9' 
+            if weightage == 'High': color_id = '11'
+            if weightage == 'Medium': color_id = '5'
+            
+            event = {
+                'summary': f"📚 {subject}: {chapter}",
+                'description': f"Focus: {row.get('Focus', 'Study')}\nWeightage: {weightage}",
+                'start': {
+                    'date': date_str,
+                    'timeZone': 'Asia/Kolkata',
+                },
+                'end': {
+                    'date': date_str,
+                    'timeZone': 'Asia/Kolkata', 
+                },
+                'colorId': color_id,
+                'transparency': 'transparent', # Show as 'Available' so it doesn't block meetings
+            }
+
+            try:
+                service.events().insert(calendarId=calendar_id, body=event).execute()
+                count += 1
+            except Exception as loop_e:
+                print(f"Failed to add event for {date_str}: {loop_e}")
+                
+        return {"status": "success", "message": f"Successfully added {count} events to Calendar."}
+
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 def sync_to_google_tasks(plan_df, task_list_name="StrikeGoal Plan"):
     """

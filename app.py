@@ -424,6 +424,7 @@ elif page == "📚 Study Planner":
                      )
 
                  with exp_col3:
+                     # Google Tasks Button
                      if st.button("✅ Google Tasks"):
                          with st.spinner("Syncing..."):
                              result = sync_to_google_tasks(plan_df, f"SG: {selected_exam}")
@@ -433,10 +434,24 @@ elif page == "📚 Study Planner":
                                  st.error("Sync Failed")
                                  with st.expander("See Error Info"):
                                      st.warning(result['message'])
+                    
+                     # Google Calendar Button
+                     from utils.calendar_sync import sync_to_google_calendar
+                     if st.button("📅 Google Calendar (Direct)"):
+                        with st.spinner("Adding events to default calendar..."):
+                            result = sync_to_google_calendar(plan_df)
+                            if result['status'] == 'success':
+                                st.success(result['message'])
+                            else:
+                                st.error("Calendar Sync Failed")
+                                with st.expander("Error Details"):
+                                    st.write(result['message'])
+                                    st.info("Note: You may need to delete 'token.pickle' and re-login to grant Calendar permissions.")
+
                                      st.markdown("""
-                                     **To enable Google Tasks Sync:**
+                                     **To enable Google Tasks/Calendar Sync:**
                                      1. Create a project in Google Cloud Console.
-                                     2. Enable **'Google Tasks API'**.
+                                     2. Enable **'Google Tasks API'** and **'Google Calendar API'**.
                                      3. Create 'Desktop App' credentials.
                                      4. Download JSON and rename to `credentials.json`.
                                      5. Place it in the root folder.

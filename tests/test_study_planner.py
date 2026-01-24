@@ -35,9 +35,20 @@ def test_generate_plan_short_duration():
     agent = StudyPlannerAgent("JEE (Main)", future_date)
     plan = agent.generate_plan()
 
-    
     # Depending on logic, it might be a dict with error or a small dataframe
     if isinstance(plan, dict):
         assert "error" in plan
     else:
         assert isinstance(plan, pd.DataFrame)
+
+def test_target_year_logic():
+    # If exam is in 2025 but target is 2026, it should project
+    current_year = datetime.now().year
+    target = current_year + 1
+    
+    # Passing a date from current year
+    agent = StudyPlannerAgent("Mock Exam", f"{current_year}-05-01", target_year=target)
+    
+    assert agent.exam_date.year == target
+    assert agent.exam_date.month == 5
+    assert agent.exam_date.day == 1
