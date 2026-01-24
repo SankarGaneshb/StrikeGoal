@@ -322,7 +322,7 @@ elif page == "📚 Study Planner":
         import os
         base_path = os.path.dirname(__file__)
         syllabus_path = os.path.join(base_path, 'data', 'syllabus.json')
-        subject_options = ["Physics", "Chemistry", "Biology", "Mathematics", "English"] # Default
+        subject_options = ["All", "Physics", "Chemistry", "Biology", "Mathematics", "English"] # Default
         
         try:
             with open(syllabus_path, 'r') as f:
