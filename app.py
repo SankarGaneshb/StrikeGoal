@@ -37,7 +37,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load exam data
-@st.cache_data
+# Load exam data
+# Removed cache to ensure updates to JSON are reflected immediately
 def load_exam_data():
     try:
         with open('data/exam_dates.json', 'r') as f:
@@ -46,7 +47,6 @@ def load_exam_data():
             for exam in data.get('exams', []):
                 if 'name' in exam and 'exam_name' not in exam:
                     exam['exam_name'] = exam['name']
-            return data
             return data
     except Exception as e:
         st.error(f"Error loading data: {e}")
