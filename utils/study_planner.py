@@ -11,7 +11,7 @@ class StudyPlannerAgent:
         self.exam_name = exam_name
         self.raw_date_str = exam_date
         self.subjects = subjects or []
-        self.today = datetime.now()
+        self.today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
         
         # Parse and Project Date
         parsed_date = self._parse_exam_date(exam_date)
@@ -44,15 +44,6 @@ class StudyPlannerAgent:
             pass
             
         # 2. Pattern 1: Day ... Month Year (e.g., "21-30 January 2026", "21 Jan 2026")
-        # We look for a Day, optional range end, then Month and Year.
-        # Regex explanation:
-        # (\d{1,2})       : Capture Start Day
-        # (?:[-–\s]+\d{1,2})? : Optional Range end (non-capturing), e.g. "-30"
-        # \s+             : Space before month
-        # ([A-Za-z]+)     : Capture Month
-        # \s+             : Space
-        # (\d{4})         : Capture Year
-        
         match = re.search(r'(\d{1,2})(?:[-–\s]+\d{1,2})?\s+([A-Za-z]+)\s+(\d{4})', date_str)
         if match:
             d, m, y = match.groups()
@@ -71,6 +62,7 @@ class StudyPlannerAgent:
         if match:
             m, y = match.groups()
             try:
+                # Default to 1st of the month
                 return datetime.strptime(f"1 {m} {y}", "%d %B %Y")
             except ValueError:
                 try:
@@ -83,11 +75,11 @@ class StudyPlannerAgent:
     def _load_syllabus(self):
         try:
             # Assuming syllabus.json is in the data folder relative to project root
-            # or same directory structure
             base_path = os.path.dirname(os.path.dirname(__file__))
             data_path = os.path.join(base_path, 'data', 'syllabus.json')
             
             if not os.path.exists(data_path):
+                # Fallback: empty syllabus or maybe load a default one
                 return {}
                 
             with open(data_path, 'r') as f:
@@ -109,30 +101,28 @@ class StudyPlannerAgent:
         if days_remaining <= 0:
             return {"error": "Exam date has already passed!"}
 
-        # Flatten all chapters into a single list to prioritize and schedule
+        # Flatten all chapters into a single list
         all_chapters = []
         
-        # Determine Strategy based on timeline
-        # > 6 months (180 days) -> Detailed
-        # <= 180 days -> Crunch (High Weightage only)
+        # Determine Strategy
         if days_remaining > 180:
             self.strategy_mode = "Long Term (Detailed)"
             allowed_weightages = ['High', 'Medium', 'Low']
         else:
             self.strategy_mode = "Short Term (Crunch)"
-            allowed_weightages = ['High'] # User requested ONLY high weightage for short term
+            # valid_weightages logic: In crunch mode, we prioritize High, but we MUST cover everything 
+            # if the user asked for it. 
+            # For now, let's include EVERYTHING but sort by weightage so low priority stuff 
+            # gets pushed to the end or doubled up.
+            allowed_weightages = ['High', 'Medium', 'Low'] 
             
         for subject, chapters in self.syllabus.items():
-            # FILTER: If specific subjects selected, skip others
             if self.subjects and subject not in self.subjects:
                 continue
                 
             for chapter in chapters:
-                # STRATEGY FILTER: Check weightage
                 weightage = chapter.get('weightage', 'Low')
-                if weightage not in allowed_weightages:
-                    continue
-                    
+                
                 # Add metadata
                 chapter_data = chapter.copy()
                 chapter_data['subject'] = subject
@@ -144,60 +134,52 @@ class StudyPlannerAgent:
                 chapter_data['priority_score'] = w_score
                 all_chapters.append(chapter_data)
         
-        # Sort by priority (descending)
+        # Sort by priority (descending) so high weightage comes first
         all_chapters.sort(key=lambda x: x['priority_score'], reverse=True)
         
-        # Scheduling Logic
-        # We will allocate chapters to dates.
-        # Simple algorithm: 1 chapter per day for now, or multiple if time permits. 
-        # Ideally, we should sum 'time_required' and fit into 'days_remaining'.
-        
+        if not all_chapters:
+             return {"error": "No chapters found for the selected subjects."}
+
         schedule = []
         current_date = self.today
         
-        # If we have more chapters than days, we need to double up.
-        # Ratio of chapters/days
-        chapters_per_day = len(all_chapters) / max(1, days_remaining)
+        # Scheduling Logic: "Crunch Mode"
+        # We must fit `len(all_chapters)` into `days_remaining`.
+        # Ensure at least 1 chapter per day.
         
-        # Simple Round-Robin iterator or linear assignment
+        # Calculate chapters needed per day (ceil)
+        import math
+        chapters_per_day = math.ceil(len(all_chapters) / days_remaining)
+        
         chapter_idx = 0
-        while chapter_idx < len(all_chapters) and current_date < self.exam_date:
-            # Determine how many chapters to schedule for this day
-            # If ratio > 1, we might need 2 chapters some days
+        while chapter_idx < len(all_chapters):
+            # If we passed exam date, we must double up on the last day or just keep adding to the list 
+            # (which implies >1 chapter/day effectively, but let's try to keep dates valid)
             
-            # For simplicity in V1: Just take the next available chapter
-            # In a real agent, this would be more complex balancing load
-            
-            daily_task = all_chapters[chapter_idx]
-            
-            schedule.append({
-                "Date": current_date.strftime("%Y-%m-%d"),
-                "Day": current_date.strftime("%A"),
-                "Subject": daily_task['subject'],
-                "Chapter": daily_task['name'],
-                "Weightage": daily_task['weightage'],
-                "Focus": "Deep Study" if daily_task['weightage'] == 'High' else "Review"
-            })
-            
-            # Move to next chapter
-            chapter_idx += 1
-            
-            # If we are falling behind schedule (too many chapters, too few days), 
-            # maybe schedule another one same day?
-            if chapters_per_day > 1.0 and chapter_idx < len(all_chapters):
-                # Check if we should add another one today
-                # Rudimentary check: "Start a second shift"
-                 daily_task_2 = all_chapters[chapter_idx]
-                 schedule.append({
+            if current_date >= self.exam_date:
+                # Fallback: Schedule everything remaining on the last possible study day (yesterday)
+                # or just cap it. Let's stack them on the last day - 1
+                current_date = self.exam_date - timedelta(days=1)
+                if current_date < self.today:
+                    current_date = self.today # Should not happen if days_remaining > 0
+
+            # Schedule N chapters for this day
+            for _ in range(chapters_per_day):
+                if chapter_idx >= len(all_chapters):
+                    break
+                    
+                daily_task = all_chapters[chapter_idx]
+                schedule.append({
                     "Date": current_date.strftime("%Y-%m-%d"),
                     "Day": current_date.strftime("%A"),
-                    "Subject": daily_task_2['subject'],
-                    "Chapter": daily_task_2['name'],
-                    "Weightage": daily_task_2['weightage'],
-                    "Focus": "Practice" # Second slot usually practice
+                    "Subject": daily_task['subject'],
+                    "Chapter": daily_task['name'],
+                    "Weightage": daily_task.get('weightage', 'Low'),
+                    "Focus": "Deep Study" if daily_task.get('weightage') == 'High' else "Review"
                 })
-                 chapter_idx += 1
-
+                chapter_idx += 1
+            
+            # Move to next day
             current_date += timedelta(days=1)
 
         return pd.DataFrame(schedule)
@@ -208,10 +190,13 @@ class StudyPlannerAgent:
         """
         try:
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-2.0-flash')  # Or gemini-pro if flash invalid
+            # Use a more available model or make it configurable
+            # gemini-1.5-flash is often the new standard for fast tasks
+            model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+            model = genai.GenerativeModel(model_name)
             
             # Construct Prompt
-            days = plan_df['Date'].nunique()
+            days = plan_df['Date'].nunique() if not plan_df.empty else 0
             topics = len(plan_df)
             focus_subjects = ", ".join(self.subjects) if self.subjects else "All Subjects"
             
@@ -227,7 +212,7 @@ class StudyPlannerAgent:
             
             Task:
             1. Provide a concise 3-bullet point strategy to maximize their score.
-            2. Explain why the "{self.strategy_mode}" approach was chosen (e.g. "Since you have >6 months..." or "Due to limited time...").
+            2. Explain why the "{self.strategy_mode}" approach was chosen.
             3. Give one high-impact technical tip for the Focus Subjects.
             
             Output Format:

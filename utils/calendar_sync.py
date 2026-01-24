@@ -98,7 +98,13 @@ def sync_to_google_tasks(plan_df, task_list_name="StrikeGoal Plan"):
     """
     creds = get_credentials()
     if not creds:
-        return {"status": "error", "message": "credentials.json not found. Please set up Google API."}
+        # Check if credentials.json exists to give a more specific error
+        if not os.path.exists('credentials.json'):
+            return {
+                "status": "error", 
+                "message": "Configuration Missing: 'credentials.json' not found. Please download it from Google Cloud Console and place it in the project root."
+            }
+        return {"status": "error", "message": "Authentication failed. Please check your Google API credentials."}
 
     try:
         service = build('tasks', 'v1', credentials=creds)

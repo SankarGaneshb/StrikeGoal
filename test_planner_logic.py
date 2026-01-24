@@ -7,7 +7,7 @@ exam_date = (datetime.now() + timedelta(days=60)).strftime('%Y-%m-%d')
 print(f"Testing for Exam Date: {exam_date}")
 
 # Test JEE-Main
-agent = StudyPlannerAgent("JEE-Main", exam_date, weak_subjects=["Physics"])
+agent = StudyPlannerAgent("JEE-Main", exam_date, subjects=["Physics"])
 plan = agent.generate_plan()
 
 if "error" in plan:
