@@ -448,14 +448,14 @@ elif page == "📚 Study Planner":
                                     st.write(result['message'])
                                     st.info("Note: You may need to delete 'token.pickle' and re-login to grant Calendar permissions.")
 
-                                     st.markdown("""
-                                     **To enable Google Tasks/Calendar Sync:**
-                                     1. Create a project in Google Cloud Console.
-                                     2. Enable **'Google Tasks API'** and **'Google Calendar API'**.
-                                     3. Create 'Desktop App' credentials.
-                                     4. Download JSON and rename to `credentials.json`.
-                                     5. Place it in the root folder.
-                                     """)
+                                    st.markdown("""
+                                    **To enable Google Tasks/Calendar Sync:**
+                                    1. Create a project in Google Cloud Console.
+                                    2. Enable **'Google Tasks API'** and **'Google Calendar API'**.
+                                    3. Create 'Desktop App' credentials.
+                                    4. Download JSON and rename to `credentials.json`.
+                                    5. Place it in the root folder.
+                                    """)
              else:
                   st.warning(f"No specific syllabus data found for {selected_exam}. Please select JEE-Main or NEET to see the demo.")
         else:
