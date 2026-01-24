@@ -347,7 +347,8 @@ elif page == "📚 Study Planner":
     
     # AI Settings
     with st.expander("🤖 AI Coach Settings (Optional)"):
-        gemini_api_key = st.text_input("Gemini API Key", type="password", help="Get free key from Google AI Studio")
+        st.caption("Get your free API key here: [Google AI Studio](https://aistudio.google.com/app/apikey)")
+        gemini_api_key = st.text_input("Gemini API Key", type="password", help="Paste your key from Google AI Studio here")
     
     if st.button("Generate Study Plan"):
         # Instantiate Agent
