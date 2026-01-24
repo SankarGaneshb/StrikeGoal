@@ -184,5 +184,1389 @@
                 "time_required": 2
             }
         ]
+    },
+    "JEE (Advanced)": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "Common University Entrance Test (CUET) UG": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "Common Law Admission Test (CLAT) UG": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "BITSAT": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "NATA": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "National Council for Hotel Management Joint Entrance Examination (NCHM JEE)": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "Bachelor of Design (B.Des.) / NIFT Entrance": {
+        "Creative Ability": [
+            {
+                "name": "Visualization & Spatial Ability",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Observation & Design Sensitivity",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "General Ability": [
+            {
+                "name": "Quantitative Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Communication Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "English Comprehension",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ]
+    },
+    "NEST": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "ISI Admission Test": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "UGEE": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "COMEDK UGET": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "VITEEE": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "SRMJEEE": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "MET (formerly MU-OET)": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "IAT (IISER)": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "UCEED": {
+        "Creative Ability": [
+            {
+                "name": "Visualization & Spatial Ability",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Observation & Design Sensitivity",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "General Ability": [
+            {
+                "name": "Quantitative Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Communication Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "English Comprehension",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ]
+    },
+    "NID-DAT": {
+        "Creative Ability": [
+            {
+                "name": "Visualization & Spatial Ability",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Observation & Design Sensitivity",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "General Ability": [
+            {
+                "name": "Quantitative Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Communication Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "English Comprehension",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ]
+    },
+    "All India Law Entrance Test (AILET)": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "Bachelor of Fashion Technology (B.F.Tech.)": {
+        "Creative Ability": [
+            {
+                "name": "Visualization & Spatial Ability",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Observation & Design Sensitivity",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "General Ability": [
+            {
+                "name": "Quantitative Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Communication Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "English Comprehension",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ]
+    },
+    "NIFT Lateral Entry Admission (NLEA)": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "FDDI AIST": {
+        "Creative Ability": [
+            {
+                "name": "Visualization & Spatial Ability",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Observation & Design Sensitivity",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "General Ability": [
+            {
+                "name": "Quantitative Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Communication Ability",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "English Comprehension",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ]
+    },
+    "AP EAMCET (EAPCET)": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "GPAT": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electrodynamics",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Biology": [
+            {
+                "name": "Human Physiology",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Genetics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Plant Physiology",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
+    },
+    "CSEET (Company Secretary Executive Entrance Test)": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "AME CET": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "UPSC CSE (Prelims)": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "CAT": {
+        "Quantitative Aptitude": [
+            {
+                "name": "Arithmetic",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Algebra & Geometry",
+                "weightage": "Medium",
+                "time_required": 2
+            },
+            {
+                "name": "Data Interpretation",
+                "weightage": "High",
+                "time_required": 3
+            }
+        ],
+        "Logical Reasoning": [
+            {
+                "name": "Analytical Reasoning",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Critical Reasoning",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "English": [
+            {
+                "name": "Reading Comprehension",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Grammar & Vocabulary",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "General Knowledge": [
+            {
+                "name": "Current Affairs",
+                "weightage": "High",
+                "time_required": 2
+            },
+            {
+                "name": "Static GK",
+                "weightage": "Low",
+                "time_required": 2
+            }
+        ]
+    },
+    "GATE": {
+        "Physics": [
+            {
+                "name": "Mechanics",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Electromagnetism",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Optics & Thermodynamics",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ],
+        "Chemistry": [
+            {
+                "name": "Physical Chemistry",
+                "weightage": "High",
+                "time_required": 3
+            },
+            {
+                "name": "Organic Chemistry",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Inorganic Chemistry",
+                "weightage": "Medium",
+                "time_required": 2
+            }
+        ],
+        "Mathematics": [
+            {
+                "name": "Calculus",
+                "weightage": "High",
+                "time_required": 5
+            },
+            {
+                "name": "Algebra",
+                "weightage": "High",
+                "time_required": 4
+            },
+            {
+                "name": "Coordinate Geometry",
+                "weightage": "Medium",
+                "time_required": 3
+            }
+        ]
     }
 }
