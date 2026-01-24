@@ -4,7 +4,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 from utils.study_planner import StudyPlannerAgent
 from utils.ics_generator import generate_ics
-from utils.calendar_sync import sync_to_google_tasks
+from utils.calendar_sync import sync_to_google_calendar
+from utils.auth_google import GoogleAuthManager
 from utils.exam_scout import ExamScoutAgent, update_exam_database
 
 # Page configuration
@@ -57,53 +58,47 @@ def load_exam_data():
             {"exam_name": "MHT-CET", "level": "State", "stream": "Engineering", "registration_start": "2024-11-15", "registration_end": "2024-12-20", "exam_date": "2025-05-27"}
         ]}
 
-# Title and description
-st.title("🎯 StrikeGoal")
-st.subheader("Smart Exam Planner for Indian Entrance Exams")
+# Authentication Logic (Google OAuth)
+if 'user_email' not in st.session_state:
+    st.session_state['user_email'] = None
 
+if not st.session_state['user_email']:
+    st.title("🎯 StrikeGoal")
+    st.markdown("### Smart Exam Planner for Indian Students")
+    st.write("Please sign in to continue.")
+    
+    # Sidebar Login
+    with st.sidebar:
+        st.header("Sign In")
+        google_auth = GoogleAuthManager()
+        user_email = google_auth.login()
+        
+        if user_email:
+            st.session_state['user_email'] = user_email
+            st.rerun()
+            
+        # Fallback for dev/demo (bypass if no internet/keys)
+        with st.expander("GUEST LOGIN (Dev Mode)"):
+            if st.button("Continue as Guest"):
+                st.session_state['user_email'] = "guest@strikegoal.app"
+                st.rerun()
+    st.stop()
 
-import yaml
-from yaml.loader import SafeLoader
-import streamlit_authenticator as stauth
-
-# Load Auth Config
-with open('auth_config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
-
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    pre_authorized=config['pre-authorized']
-)
-
-# Authentication Logic
-# 0.4.2 syntax might differ slightly, but typically:
-# name, authentication_status, username = authenticator.login('Login', 'main') 
-# However, newer 0.3+ use login() returning None/True/False
-# Let's try the standard pattern for v0.3+ which 0.4.x usually follows
-try:
-    authenticator.login()
-except Exception as e:
-    st.error(f"Auth Error: {e}")
-
-if st.session_state["authentication_status"]:
-    # Logout button in sidebar
-    authenticator.logout('Logout', 'sidebar')
-    st.sidebar.write(f"Welcome *{st.session_state['name']}*")
+# Authenticated
+user_email = st.session_state['user_email']
+    
+# Logout button in sidebar
+with st.sidebar:
+    st.write(f"Signed in as: *{user_email}*")
+    if st.button("Logout"):
+        st.session_state['user_email'] = None
+        st.rerun()
 
     # Sidebar navigation
     page = st.sidebar.radio(
         "Select Page",
         ["📅 Exam Calendar", "📚 Study Planner", "📊 Analytics", "🧘 Wellness", "⚙️ Settings"]
     )
-elif st.session_state["authentication_status"] is False:
-    st.error('Username/password is incorrect')
-    st.stop()
-elif st.session_state["authentication_status"] is None:
-    st.warning('Please enter your username and password')
-    st.stop()
 
 
 # Load data
